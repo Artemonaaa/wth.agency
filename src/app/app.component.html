@@ -1,0 +1,23 @@
+<mat-drawer-container 
+  [autosize]="true"
+  class="flex min-h-full max-w-7xl container mx-auto"
+>
+<mat-drawer-content class="p-6">
+  <app-product-header 
+    (itemsCountChange)="onItemsCountChange($event)"
+    (breedNameChange)="onBreedNameChange($event)"
+    [breedName]="breedName"
+    [itemCount]="itemsCount"
+    class="m-3"
+  >
+</app-product-header>
+  <mat-spinner class="mx-auto" *ngIf="loading"></mat-spinner>
+    <div class="flex flex-wrap gap-10">
+      <app-product
+        *ngFor="let product of products$ | async as products"
+        [product]="product"
+      >
+      </app-product>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

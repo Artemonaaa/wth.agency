@@ -1,0 +1,40 @@
+<mat-card class="p-3">
+  <div class="flex justify-between">
+    <div>
+      <button mat-button [matMenuTriggerFor]="sortByBreed">
+        Sort by {{ breedName ? breedName : "All"}}
+        <mat-icon iconPositionEnd>expand_more</mat-icon>
+      </button>
+      <mat-menu #sortByBreed="matMenu">
+        <button 
+          mat-menu-item
+          (click)="onBreedNameUpdate('')"
+        >
+          All
+        </button>
+        <button 
+          mat-menu-item
+          *ngFor="let breed of breeds$ | async" 
+          (click)="onBreedNameUpdate(breed.id)"
+      >
+        {{ breed.id }}
+      </button>
+      </mat-menu>
+    </div>
+
+    <div class="flex items-center">
+      <div>
+        <button mat-button [matMenuTriggerFor]="itemsCount">
+          Show {{ itemCount }}
+          <mat-icon iconPositionEnd>expand_more</mat-icon>
+        </button>
+        <mat-menu #itemsCount="matMenu">
+          <button mat-menu-item (click)="onItemsUpdate(10)">10</button>
+          <button mat-menu-item (click)="onItemsUpdate(12)">12</button>
+          <button mat-menu-item (click)="onItemsUpdate(15)">15</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+</mat-card>   
